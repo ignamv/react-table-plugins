@@ -1,6 +1,10 @@
-const { useMemo } = require("react");
+const { useMemo, createElement } = require("react");
 const { unmountComponentAtNode } = require("react-dom");
 const { useTable } = require("react-table");
+const { TableBodyRows } = require(".");
+const { TableHead } = require("./components");
+
+const e = createElement;
 
 module.exports.ReactTableTestHarness = function ({ onRender, tableArgs }) {
   const [kwargs, ...args] = tableArgs;
@@ -22,6 +26,7 @@ module.exports.ReactTableTestHarness = function ({ onRender, tableArgs }) {
     page: maybePage,
     prepareRow,
     headerGroups,
+    getTableBodyProps,
   } = instance;
   const page = maybePage !== undefined ? maybePage : outputRows;
   const headers = headerGroups.map((headerGroup) =>
@@ -31,8 +36,19 @@ module.exports.ReactTableTestHarness = function ({ onRender, tableArgs }) {
     prepareRow(row);
     return row.cells.map((cell) => cell.value);
   });
-  onRender({ values, headers, instance });
-  return null;
+  if (onRender !== undefined) {
+    onRender({ values, headers, instance });
+  }
+  const makecell = (column) =>
+    e("th", { ...column.getHeaderProps() }, column.render("Header"));
+
+  const thead = e(TableHead, { headerGroups, makecell });
+  const tbody = e(
+    "tbody",
+    { ...getTableBodyProps() },
+    e(TableBodyRows, { page, prepareRow })
+  );
+  return e("table", null, thead, tbody);
 };
 
 let container;

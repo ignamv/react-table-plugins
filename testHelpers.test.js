@@ -76,3 +76,44 @@ test("harness works with paging", () => {
   [{ values, headers, instance }] = renders;
   expect(values).toEqual(expectedValues.slice(10));
 });
+
+test("harness renders thead and tbody", () => {
+  const renders = [];
+  const container = getContainer();
+  const rows = [
+    { a: "1", b: "2" },
+    { a: "3", b: "4" },
+  ];
+  const columns = columnsFromAccessors(Object.keys(rows[0]));
+  const expectedValues = rows.map((row) =>
+    columns.map(({ accessor }) => row[accessor])
+  );
+  const tableArgs = [{ columns, rows }];
+  act(() => {
+    render(
+      React.createElement(ReactTableTestHarness, {
+        tableArgs,
+        onRender: (x) => renders.push(x),
+      }),
+      container
+    );
+  });
+  const [{ instance }] = renders;
+  renders.pop();
+  const [table] = container.childNodes;
+  const [thead, tbody] = table.childNodes;
+  const [headrow] = thead.childNodes;
+  [...headrow.childNodes].forEach((th, idx) => {
+    expect(th.tagName).toBe("TH");
+    expect(th.childNodes[0].textContent).toBe(columns[idx].Header);
+  });
+  expect(tbody.getAttribute("role")).toBe(instance.getTableBodyProps()["role"]);
+  const actualValues = [...tbody.childNodes].map((tr) => {
+    expect(tr.tagName).toBe("TR");
+    return [...tr.childNodes].map((td) => {
+      expect(td.tagName).toBe("TD");
+      return td.childNodes[0].textContent;
+    });
+  });
+  expect(actualValues).toEqual(expectedValues);
+});
