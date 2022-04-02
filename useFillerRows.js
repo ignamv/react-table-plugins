@@ -1,4 +1,4 @@
-module.exports = function useFillerRows(hooks) {
+module.exports.useFillerRows = function (hooks) {
   function useInstance(instance) {
     const {
       state: { pageSize },
