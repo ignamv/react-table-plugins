@@ -40,8 +40,9 @@ test("tablehead", () => {
   const [table] = container.childNodes;
   const [thead] = table.childNodes;
   const [row] = thead.childNodes;
-  const headers = [...row.childNodes].map(
-    (node) => node.childNodes[0].textContent
-  );
+  const headers = [...row.childNodes].map((node) => {
+    expect(node.tagName).toBe("TH");
+    return node.childNodes[0].textContent;
+  });
   expect(headers).toEqual(Object.keys(testData[0]));
 });
