@@ -14,7 +14,7 @@ const { act } = require("react-dom/test-utils");
 const { columnsFromAccessors } = require("./helpers");
 const { generateSampleData } = require("./testData");
 const { usePagination } = require("react-table");
-const { expect, test } = require("@jest/globals");
+const { expect, test, beforeEach, afterEach } = require("@jest/globals");
 
 const testData = generateSampleData(5, 15, 5);
 

@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-const { expect, test } = require("@jest/globals");
+const { expect, test, beforeEach, afterEach } = require("@jest/globals");
 const { createElement, useMemo } = require("react");
 const { render } = require("react-dom");
 const { act } = require("react-dom/test-utils");
