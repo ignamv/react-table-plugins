@@ -78,7 +78,7 @@ module.exports.useSelectSingleRow = function (hooks) {
     });
   }
 
-  function reducer(state, action, previousState, instance) {
+  function reducer(state, action, _previousState, instance) {
     if (action.type === actions.init) {
       return {
         // Actual index (independent of sorting and filtering)
@@ -173,20 +173,6 @@ module.exports.TableBodyRows = function ({ page, prepareRow }) {
       );
       return e("tr", { ...row.getRowProps() }, cells);
     })
-  );
-};
-
-module.exports.TableHead = function ({ headerGroups, makecell }) {
-  return e(
-    "thead",
-    null,
-    headerGroups.map((headerGroup) =>
-      e(
-        "tr",
-        { ...headerGroup.getHeaderGroupProps() },
-        headerGroup.headers.map(makecell)
-      )
-    )
   );
 };
 
