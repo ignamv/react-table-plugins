@@ -1,8 +1,7 @@
 const { useMemo, createElement } = require("react");
 const { unmountComponentAtNode } = require("react-dom");
 const { useTable } = require("react-table");
-const { TableBodyRows } = require(".");
-const { TableHead } = require("./components");
+const { TableHead, TableBodyRows } = require("./components");
 
 const e = createElement;
 
