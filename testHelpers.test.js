@@ -2,9 +2,9 @@
  * @jest-environment jsdom
  */
 
-const { ReactTableTestHarness } = require("./testHelpers");
+const { ReactTableTestHarness, setupReactTest, teardownReactTest, getContainer } = require("./testHelpers");
 const React = require("react");
-const { render, unmountComponentAtNode } = require("react-dom");
+const { render } = require("react-dom");
 const { act } = require("react-dom/test-utils");
 const { columnsFromAccessors } = require("./helpers");
 const { generateSampleData } = require("./testData");
@@ -13,20 +13,9 @@ const { expect, test } = require("@jest/globals");
 
 const testData = generateSampleData(5, 15, 5);
 
-let container = null;
 
-beforeEach(() => {
-  // Setup a DOM container as render target
-  container = document.createElement("div");
-  document.body.appendChild(container);
-});
-
-afterEach(() => {
-  // Cleanup
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
-});
+beforeEach(setupReactTest);
+afterEach(teardownReactTest);
 
 test("harness returns headers and values", () => {
   const renders = [];
@@ -39,7 +28,7 @@ test("harness returns headers and values", () => {
         tableArgs,
         onRender: (x) => renders.push(x),
       }),
-      container
+      getContainer()
     );
   });
   expect(renders.length).toBe(1);
@@ -68,7 +57,7 @@ test("harness works with paging", () => {
         tableArgs,
         onRender: (x) => renders.push(x),
       }),
-      container
+      getContainer()
     );
   });
   // Did first page render correctly?

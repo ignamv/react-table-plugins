@@ -1,4 +1,5 @@
 const { useMemo } = require("react");
+const { unmountComponentAtNode } = require("react-dom");
 const { useTable } = require("react-table");
 
 module.exports.ReactTableTestHarness = function ({ onRender, tableArgs }) {
@@ -32,4 +33,19 @@ module.exports.ReactTableTestHarness = function ({ onRender, tableArgs }) {
   });
   onRender({ values, headers, instance });
   return null;
+};
+
+let container;
+module.exports.getContainer = function() { return container; };
+
+module.exports.setupReactTest = function() {
+  // Setup a DOM container as render target
+  container = document.createElement("div");
+  document.body.appendChild(container);
+}
+
+module.exports.teardownReactTest = function() {
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
 };
