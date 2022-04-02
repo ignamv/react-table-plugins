@@ -8,15 +8,16 @@ const {
   teardownReactTest,
   getContainer,
 } = require("./testHelpers");
-const React = require("react");
 const { render } = require("react-dom");
 const { act } = require("react-dom/test-utils");
 const { columnsFromAccessors } = require("./helpers");
 const { generateSampleData } = require("./testData");
 const { usePagination } = require("react-table");
 const { expect, test, beforeEach, afterEach } = require("@jest/globals");
+const { createElement } = require("react");
 
 const testData = generateSampleData(5, 15, 5);
+const e = createElement;
 
 beforeEach(setupReactTest);
 afterEach(teardownReactTest);
@@ -28,7 +29,7 @@ test("harness returns headers and values", () => {
   const tableArgs = [{ columns, rows }];
   act(() => {
     render(
-      React.createElement(ReactTableTestHarness, {
+      e(ReactTableTestHarness, {
         tableArgs,
         onRender: (x) => renders.push(x),
       }),
@@ -57,7 +58,7 @@ test("harness works with paging", () => {
   ];
   act(() => {
     render(
-      React.createElement(ReactTableTestHarness, {
+      e(ReactTableTestHarness, {
         tableArgs,
         onRender: (x) => renders.push(x),
       }),
@@ -91,7 +92,7 @@ test("harness renders thead and tbody", () => {
   const tableArgs = [{ columns, rows }];
   act(() => {
     render(
-      React.createElement(ReactTableTestHarness, {
+      e(ReactTableTestHarness, {
         tableArgs,
         onRender: (x) => renders.push(x),
       }),
