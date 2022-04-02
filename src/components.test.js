@@ -46,37 +46,38 @@ test("tablehead", () => {
   expect(headers).toEqual(Object.keys(testData[0]));
 });
 
-test('tablebodyrows', () => {
+test("tablebodyrows", () => {
   const container = getContainer();
   const prepareRow = jest.fn();
-  const nrows = 3, ncols = 4;
-  const page = [...new Array(nrows).keys()].map(rowidx => ({
-    getRowProps: () => ({role: 'row', key: rowidx}),
-    cells: [...new Array(ncols).keys()].map(colidx => ({
+  const nrows = 3,
+    ncols = 4;
+  const page = [...new Array(nrows).keys()].map((rowidx) => ({
+    getRowProps: () => ({ role: "row", key: rowidx }),
+    cells: [...new Array(ncols).keys()].map((colidx) => ({
       txt: `${rowidx}:${colidx}`,
-      render: jest.fn(x => {
-        expect(x).toBe('Cell');
+      render: jest.fn((x) => {
+        expect(x).toBe("Cell");
         return `${rowidx}:${colidx}`;
       }),
-      getCellProps: () => ({role: 'cell', key: colidx}),
+      getCellProps: () => ({ role: "cell", key: colidx }),
     })),
   }));
-  const rows = e(TableBodyRows, {page, prepareRow});
+  const rows = e(TableBodyRows, { page, prepareRow });
   act(() => {
-    render(e('table', null, e('tbody', null, rows)), container);
+    render(e("table", null, e("tbody", null, rows)), container);
   });
-  expect(prepareRow.mock.calls).toEqual(page.map(row => [row]));
+  expect(prepareRow.mock.calls).toEqual(page.map((row) => [row]));
   const [table] = container.childNodes;
   const [tbody] = table.childNodes;
   const rownodes = [...tbody.childNodes];
   expect(rownodes.length).toBe(nrows);
   rownodes.forEach((tr, rowidx) => {
-    expect(tr.getAttribute('role')).toBe('row');
-      const cells = [...tr.childNodes];
-      expect(cells.length).toBe(ncols);
-      cells.forEach((td, colidx) => {
-          expect(page[rowidx].cells[colidx].render.mock.calls).toEqual([['Cell']]);
-          expect(td.childNodes[0].textContent).toBe(page[rowidx].cells[colidx].txt);
-      });
+    expect(tr.getAttribute("role")).toBe("row");
+    const cells = [...tr.childNodes];
+    expect(cells.length).toBe(ncols);
+    cells.forEach((td, colidx) => {
+      expect(page[rowidx].cells[colidx].render.mock.calls).toEqual([["Cell"]]);
+      expect(td.childNodes[0].textContent).toBe(page[rowidx].cells[colidx].txt);
+    });
   });
-})
+});

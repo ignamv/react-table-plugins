@@ -16,7 +16,6 @@ module.exports.TableHead = function ({ headerGroups, makecell }) {
   );
 };
 
-
 module.exports.TableBodyRows = function ({ page, prepareRow }) {
   return e(
     Fragment,
