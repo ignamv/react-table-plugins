@@ -15,24 +15,6 @@ actions.setSelectedRowIndex = "setSelectedRowIndex";
 actions.moveSelection = "moveSelection";
 actions.updateRowPosition = "updateRowPosition";
 
-module.exports.useWheelPaging = function (hooks) {
-  function getTableBodyProps(props, { instance: { previousPage, nextPage } }) {
-    const onWheel = useCallback(
-      (ev) => {
-        if (ev.deltaY > 0) {
-          nextPage();
-        } else {
-          previousPage();
-        }
-        //ev.preventDefault(); // FIXME: ignored by react because "passive listener" (?)
-      },
-      [nextPage, previousPage]
-    );
-    return { onWheel, ...props };
-  }
-  hooks.getTableBodyProps.push(getTableBodyProps);
-};
-
 module.exports.useSelectSingleRow = function (hooks) {
   function getRowProps(props, { row, instance }) {
     const {
