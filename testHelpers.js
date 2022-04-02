@@ -36,15 +36,17 @@ module.exports.ReactTableTestHarness = function ({ onRender, tableArgs }) {
 };
 
 let container;
-module.exports.getContainer = function() { return container; };
+module.exports.getContainer = function () {
+  return container;
+};
 
-module.exports.setupReactTest = function() {
+module.exports.setupReactTest = function () {
   // Setup a DOM container as render target
   container = document.createElement("div");
   document.body.appendChild(container);
-}
+};
 
-module.exports.teardownReactTest = function() {
+module.exports.teardownReactTest = function () {
   unmountComponentAtNode(container);
   container.remove();
   container = null;

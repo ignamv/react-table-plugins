@@ -2,7 +2,12 @@
  * @jest-environment jsdom
  */
 
-const { ReactTableTestHarness, setupReactTest, teardownReactTest, getContainer } = require("./testHelpers");
+const {
+  ReactTableTestHarness,
+  setupReactTest,
+  teardownReactTest,
+  getContainer,
+} = require("./testHelpers");
 const React = require("react");
 const { render } = require("react-dom");
 const { act } = require("react-dom/test-utils");
@@ -12,7 +17,6 @@ const { usePagination } = require("react-table");
 const { expect, test } = require("@jest/globals");
 
 const testData = generateSampleData(5, 15, 5);
-
 
 beforeEach(setupReactTest);
 afterEach(teardownReactTest);
