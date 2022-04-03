@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "doc": "npx jsdoc --configure doc/jsdoc.js"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "eslint-plugin-react": "^7.29.4",
     "husky": "^7.0.4",
     "jest": "^27.5.1",
+    "jsdoc": "^3.6.10",
     "lint-staged": "^12.3.7",
     "prettier": "2.6.1",
     "react": "^17.0.2",
@@ -44,5 +46,8 @@
   "lint-staged": {
     "*.js": "eslint --cache --fix",
     "*.{js,css,md}": "prettier --write"
+  },
+  "dependencies": {
+    "prop-types": "^15.8.1"
   }
 }

@@ -5,6 +5,21 @@ actions.setSelectedRowIndex = "setSelectedRowIndex";
 actions.moveSelection = "moveSelection";
 actions.updateRowPosition = "updateRowPosition";
 
+/**
+ * react-table hook to allow user to select a single row
+ * 
+ * Adds property `selectedRowIndex` to table `state`.
+ * 
+ * Adds function `setSelectedRowIndex` to table instance.
+ * 
+ * The selected row gets a `className` of `selected`.
+ * 
+ * User can move selection by clicking rows or pressing arrow keys/PageUp/
+ * PageDown.
+ * 
+ * When the table is filtered or resorted, keep the selected row visible.
+ * If the selected row is filtered out, move selection to the first row.
+ */
 module.exports.useSelectSingleRow = function (hooks) {
   function getRowProps(props, { row, instance }) {
     const {

@@ -1,11 +1,29 @@
+/**
+ * Helpers for testing react-table
+ * @module
+ */
+
 const { useMemo, createElement } = require("react");
 const { unmountComponentAtNode } = require("react-dom");
 const { useTable } = require("react-table");
 const { TableHead, TableBodyRows } = require("./components");
+const PropTypes = require("prop-types");
 
 const e = createElement;
 
-module.exports.ReactTableTestHarness = function ({ onRender, tableArgs }) {
+/**
+ * Component to simplify react-table tests. Renders a basic table and calls
+ * onRender on each render.
+ *
+ * @param {Object} props
+ * @param {Function} props.onRender - Function called on each render with a single
+ * argument, {instance, values, headers}. `instance` is the `useTable` return
+ * value, `values` the rendered cell values and `headers` the rendered
+ * column headers
+ * @param {Array} props.tableArgs - parameters for `useTable`
+ */
+module.exports.ReactTableTestHarness = function (props) {
+  const { onRender, tableArgs } = props;
   const [kwargs, ...args] = tableArgs;
   const { rows, columns, ...otherKwargs } = kwargs;
 
@@ -50,17 +68,32 @@ module.exports.ReactTableTestHarness = function ({ onRender, tableArgs }) {
   return e("table", null, thead, tbody);
 };
 
+module.exports.ReactTableTestHarness.propTypes = {
+  onRender: PropTypes.func,
+  tableArgs: PropTypes.array.isRequired,
+};
+
 let container;
+/**
+ * Return container for React to render into during a test
+ * @returns {HTMLElement} container
+ */
 module.exports.getContainer = function () {
   return container;
 };
 
+/**
+ * Create container for React to render into during a test
+ */
 module.exports.setupReactTest = function () {
   // Setup a DOM container as render target
   container = document.createElement("div");
   document.body.appendChild(container);
 };
 
+/**
+ * Remove React container after test
+ */
 module.exports.teardownReactTest = function () {
   unmountComponentAtNode(container);
   container.remove();
