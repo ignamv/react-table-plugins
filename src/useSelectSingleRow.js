@@ -11,10 +11,8 @@ module.exports.useSelectSingleRow = function (hooks) {
       setSelectedRowIndex,
       state: { selectedRowIndex },
     } = instance;
-    console.log(selectedRowIndex);
     const onClick = () => {
       setSelectedRowIndex(row.index);
-      console.log(`Selecting ${row.index}`);
     };
     const className = row.index == selectedRowIndex ? "selected" : "";
     return { onClick, className, ...props };
