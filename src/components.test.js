@@ -2,11 +2,15 @@
  * @jest-environment jsdom
  */
 const { expect, test, beforeEach, afterEach } = require("@jest/globals");
-const { createElement, useMemo } = require("react");
+const { createElement, useMemo, useState } = require("react");
 const { render } = require("react-dom");
 const { act } = require("react-dom/test-utils");
 const { useTable } = require("react-table/dist/react-table.development");
-const { TableHead, TableBodyRows } = require("./components");
+const {
+  TableHead,
+  TableBodyRows,
+  SelectColumnFilter,
+} = require("./components");
 const { columnsFromAccessors } = require("./helpers");
 const { generateSampleData } = require("./testData");
 const {
@@ -80,4 +84,50 @@ test("tablebodyrows", () => {
       expect(td.childNodes[0].textContent).toBe(page[rowidx].cells[colidx].txt);
     });
   });
+});
+
+test("selectcolumnfilter", () => {
+  const container = getContainer();
+  const onSetFilter = jest.fn();
+  const preFilteredRows = [2, 5, 3, 2, 2, 5, 5, 3, 3].map((x) => ({
+    values: {
+      a: x,
+      b: x + 10,
+    },
+  }));
+  const id = "a";
+  function SelectColumnFilterHarness({ onSetFilter }) {
+    const [filterValue, setFilter] = useState();
+    return e(SelectColumnFilter, {
+      column: {
+        filterValue,
+        setFilter: (value) => {
+          setFilter(value);
+          onSetFilter(value);
+        },
+        preFilteredRows,
+        id,
+      },
+    });
+  }
+  act(() => {
+    render(e(SelectColumnFilterHarness, { onSetFilter }), container);
+  });
+  const [select] = container.childNodes;
+  const [firstoption, ...options] = select.childNodes;
+  expect(firstoption.getAttribute("value")).toBe("");
+  expect(firstoption.textContent).toBe("All");
+  [2, 3, 5].forEach((value, idx) => {
+    const option = options[idx];
+    expect(option.getAttribute("value")).toBe(idx.toString());
+    expect(option.textContent).toBe(value.toString());
+  });
+  expect(onSetFilter.mock.calls.length).toBe(0);
+  act(() => {
+    for (const option of select.childNodes) {
+      select.value = option.value;
+      select.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+  });
+  expect(onSetFilter.mock.calls).toEqual([[undefined], [2], [3], [5]]);
 });
