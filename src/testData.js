@@ -1,8 +1,3 @@
-const words =
-  "time way year work government day man world life part house course case system place end group company party information school fact".split(
-    " "
-  );
-
 let status = 39467;
 
 function randInt() {
@@ -22,7 +17,9 @@ module.exports.generateSampleData = function (
   nrows,
   uniqueValuesPerCol
 ) {
-  const headers = sample(words, ncols);
+  const headers = [...Array(ncols).keys()].map(ii => `col${ii}`);
+  const nwords = 20
+  const words = [...Array(nwords).keys()].map(ii => `val${ii}`);
   const uniqueValues = new Map(
     headers.map((k) => [k, sample(words, uniqueValuesPerCol)])
   );
