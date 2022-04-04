@@ -1,7 +1,8 @@
 const { useCallback } = require("react");
 
 /**
- * react-table hook to allow user to switch pages using mouse wheel 
+ * react-table hook to allow user to switch pages using mouse wheel
+ * @memberof module:hooks
  */
 module.exports.useWheelPaging = function (hooks) {
   function getTableBodyProps(props, { instance: { previousPage, nextPage } }) {

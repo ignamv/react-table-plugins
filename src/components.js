@@ -11,7 +11,7 @@ const e = createElement;
  * Render a `<thead>` for react-table
  * @param {Object} props
  * @param {*} props.headerGroups - from react-table instance
- * @param {Function} props.makecell - function taking a `column` parameter 
+ * @param {Function} props.makecell - function taking a `column` parameter
  * and returning a `<th>`
  */
 module.exports.TableHead = function (props) {
@@ -62,10 +62,10 @@ module.exports.TableBodyRows.propTypes = {
 
 /**
  * Select box for react-table's `useFilters`.
- * 
- * Use this in the `Filter` property of the `columns` 
+ *
+ * Use this in the `Filter` property of the `columns`
  * or in the `Filter` property of `defaultColumn`.
- * 
+ *
  * The options are sorted and the original type (e.g. `number`) is conserved
  * (not converted to `string`)
  */
