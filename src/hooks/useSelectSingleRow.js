@@ -133,7 +133,7 @@ module.exports.useSelectSingleRow = function (hooks) {
       return {
         ...state,
         selectedRowPosition: 0,
-        selectedRowIndex: instance.rows[0].index,
+        selectedRowIndex: instance.rows.length !== 0 ? instance.rows[0].index : undefined,
         pageIndex: 0,
       };
     }

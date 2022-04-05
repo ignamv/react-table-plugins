@@ -23,10 +23,28 @@ const e = createElement;
 
 const testData = generateSampleData(4, 200, 5);
 const columns = columnsFromAccessors(Object.keys(testData[0]));
+const pageSize = 10;
+
+test("useSelectSingleRow empty table", () => {
+  const container = getContainer();
+  const tableArgs = [
+    {
+      data: [],
+      columns,
+      initialState: { pageSize },
+    },
+    useFilters,
+    useSortBy,
+    usePagination,
+    useSelectSingleRow,
+  ];
+  act(() => {
+    render(e(ReactTableTestHarness, { tableArgs }), container);
+  });
+});
 
 test("useSelectSingleRow", () => {
   const container = getContainer();
-  const pageSize = 10;
   const tableArgs = [
     {
       data: testData,
