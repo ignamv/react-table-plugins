@@ -92,6 +92,7 @@ module.exports.SelectColumnFilter = function ({
   return e(
     "select",
     {
+      className: filterValue !== undefined ? 'active' : '',
       value: optionToIndex.get(filterValue) || "",
       onChange: (e) => {
         setFilter(sortedOptions[parseInt(e.target.value)] || undefined);

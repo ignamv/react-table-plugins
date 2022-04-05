@@ -123,11 +123,15 @@ test("selectcolumnfilter", () => {
     expect(option.textContent).toBe(value.toString());
   });
   expect(onSetFilter.mock.calls.length).toBe(0);
-  act(() => {
-    for (const option of select.childNodes) {
+  const actives = [];
+  for (const option of select.childNodes) {
+    act(() => {
       select.value = option.value;
       select.dispatchEvent(new Event("change", { bubbles: true }));
-    }
-  });
+    });
+    const active = container.getElementsByTagName('select')[0].classList.contains('active');
+    actives.push(active);
+  }
   expect(onSetFilter.mock.calls).toEqual([[undefined], [2], [3], [5]]);
+  expect(actives).toEqual([false, true, true, true]);
 });
