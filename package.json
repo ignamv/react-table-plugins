@@ -1,7 +1,7 @@
 {
   "name": "react-table-plugins",
   "version": "0.0.1",
-  "description": "Plugins for common tasks with react-table v7",
+  "description": "Plugins for common tasks with react-table",
   "main": "dist/react-table-plugins.js",
   "scripts": {
     "test": "jest",
@@ -12,21 +12,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ignamv/react-table-v7-plugins.git"
+    "url": "git://github.com/ignamv/react-table-plugins.git"
   },
   "keywords": [
     "react",
     "table",
-    "v7",
     "react-table",
     "plugin"
   ],
   "author": "Ignacio Martinez Vazquez",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ignamv/react-table-v7-plugins/issues"
+    "url": "https://github.com/ignamv/react-table-plugins/issues"
   },
-  "homepage": "https://github.com/ignamv/react-table-v7-plugins#readme",
+  "homepage": "https://github.com/ignamv/react-table-plugins#readme",
   "peerDependencies": {
     "react": "^17.0.2",
     "react-table": "^7.7.0"
