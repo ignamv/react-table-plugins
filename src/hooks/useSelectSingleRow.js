@@ -51,6 +51,16 @@ module.exports.useSelectSingleRow = function (hooks) {
         type: actions.moveSelection,
         delta: instance.state.pageSize,
       });
+    const selectStart = () =>
+      instance.dispatch({
+        type: actions.moveSelection,
+        delta: -instance.state.selectedRowPosition,
+      });
+    const selectEnd = () =>
+      instance.dispatch({
+        type: actions.moveSelection,
+        delta: instance.rows.length,
+      });
     useEffect(
       () => instance.dispatch({ type: actions.updateRowPosition }),
       [instance.state.filters, instance.state.sortBy]
@@ -61,6 +71,8 @@ module.exports.useSelectSingleRow = function (hooks) {
       selectNextRow,
       pageUp,
       pageDown,
+      selectStart,
+      selectEnd,
     });
   }
 
@@ -137,6 +149,10 @@ module.exports.useSelectSingleRow = function (hooks) {
         instance.pageDown();
       } else if (ev.key == "PageUp") {
         instance.pageUp();
+      } else if (ev.key == 'Home') {
+        instance.selectStart();
+      } else if (ev.key == 'End') {
+        instance.selectEnd();
       }
     };
     return { tabIndex: 0, onKeyDown, ...props };

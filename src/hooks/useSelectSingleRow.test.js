@@ -78,6 +78,12 @@ test("useSelectSingleRow", () => {
   sendkey("ArrowUp", 2);
   // Should stay at first row
   assertSelected(0, 0);
+  // Select last row
+  sendkey("End");
+  assertSelected(testData.length - 1, testData.length - 1);
+  // Select first row
+  sendkey("Home");
+  assertSelected(0, 0);
   // Go down one row
   sendkey("ArrowDown");
   assertSelected(1, 1);
