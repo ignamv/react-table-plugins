@@ -20,7 +20,7 @@
     "react-table",
     "plugin"
   ],
-  "author": "Ignacio Martinez Vazquez",
+  "author": "Ignacio Martinez Vazquez <ignamv@gmail.com> (https://github.com/ignamv)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ignamv/react-table-plugins/issues"
