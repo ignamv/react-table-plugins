@@ -6,14 +6,14 @@ const { createElement } = require("react");
 const { render } = require("react-dom");
 const { act } = require("react-dom/test-utils");
 const { usePagination } = require("react-table/dist/react-table.development");
-const { columnsFromAccessors } = require("./helpers");
-const { generateSampleData } = require("./testData");
+const { columnsFromAccessors } = require("../helpers");
+const { generateSampleData } = require("../testData");
 const {
   setupReactTest,
   teardownReactTest,
   ReactTableTestHarness,
   getContainer,
-} = require("./testHelpers");
+} = require("../testHelpers");
 const { useWheelPaging } = require("./useWheelPaging");
 
 beforeEach(setupReactTest);

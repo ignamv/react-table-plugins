@@ -3,8 +3,9 @@
  * @module hooks
  */
 
-module.exports.useFillerRows = require("./useFillerRows");
-
-module.exports.useSelectSingleRow = require("./useSelectSingleRow");
-
-module.exports.useWheelPaging = require("./useWheelPaging");
+Object.assign(
+    module.exports,
+    require("./useFillerRows"),
+    require("./useSelectSingleRow"),
+    require("./useWheelPaging"),
+);

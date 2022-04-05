@@ -6,14 +6,14 @@ const { createElement } = require("react");
 const { render } = require("react-dom");
 const { act } = require("react-dom/test-utils");
 const { usePagination, useFilters, useSortBy } = require("react-table");
-const { columnsFromAccessors } = require("./helpers");
-const { generateSampleData } = require("./testData");
+const { columnsFromAccessors } = require("../helpers");
+const { generateSampleData } = require("../testData");
 const {
   setupReactTest,
   teardownReactTest,
   getContainer,
   ReactTableTestHarness,
-} = require("./testHelpers");
+} = require("../testHelpers");
 const { useSelectSingleRow } = require("./useSelectSingleRow");
 
 beforeEach(setupReactTest);
