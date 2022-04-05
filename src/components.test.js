@@ -129,7 +129,9 @@ test("selectcolumnfilter", () => {
       select.value = option.value;
       select.dispatchEvent(new Event("change", { bubbles: true }));
     });
-    const active = container.getElementsByTagName('select')[0].classList.contains('active');
+    const active = container
+      .getElementsByTagName("select")[0]
+      .classList.contains("active");
     actives.push(active);
   }
   expect(onSetFilter.mock.calls).toEqual([[undefined], [2], [3], [5]]);

@@ -4,8 +4,8 @@
  */
 
 Object.assign(
-    module.exports,
-    require("./useFillerRows"),
-    require("./useSelectSingleRow"),
-    require("./useWheelPaging"),
+  module.exports,
+  require("./useFillerRows"),
+  require("./useSelectSingleRow"),
+  require("./useWheelPaging")
 );

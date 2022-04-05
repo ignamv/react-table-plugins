@@ -133,7 +133,8 @@ module.exports.useSelectSingleRow = function (hooks) {
       return {
         ...state,
         selectedRowPosition: 0,
-        selectedRowIndex: instance.rows.length !== 0 ? instance.rows[0].index : undefined,
+        selectedRowIndex:
+          instance.rows.length !== 0 ? instance.rows[0].index : undefined,
         pageIndex: 0,
       };
     }
@@ -149,9 +150,9 @@ module.exports.useSelectSingleRow = function (hooks) {
         instance.pageDown();
       } else if (ev.key == "PageUp") {
         instance.pageUp();
-      } else if (ev.key == 'Home') {
+      } else if (ev.key == "Home") {
         instance.selectStart();
-      } else if (ev.key == 'End') {
+      } else if (ev.key == "End") {
         instance.selectEnd();
       }
     };
