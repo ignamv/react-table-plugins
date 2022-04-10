@@ -28,7 +28,7 @@ module.exports.useSelectSingleRow = function (hooks) {
       state: { selectedRowIndex },
     } = instance;
     const onMouse = (ev) => {
-      if (ev.buttons & 1 || ev.type === 'click') {
+      if (ev.buttons & 1 || ev.type === "click") {
         setSelectedRowIndex(row.index);
       }
     };

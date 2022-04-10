@@ -115,7 +115,7 @@ test("selectcolumnfilter", () => {
     render(e(SelectColumnFilterHarness, { onSetFilter }), container);
   });
   const [select] = container.childNodes;
-  expect(select.value).toBe('0');
+  expect(select.value).toBe("0");
   const [firstoption, ...options] = select.childNodes;
   expect(firstoption.getAttribute("value")).toBe("");
   expect(firstoption.textContent).toBe("All");

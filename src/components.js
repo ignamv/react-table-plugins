@@ -89,7 +89,9 @@ module.exports.SelectColumnFilter = function ({
   }, [id, preFilteredRows]);
 
   // Render a multi-select box
-  const value = optionToIndex.has(filterValue) ? optionToIndex.get(filterValue) : '';
+  const value = optionToIndex.has(filterValue)
+    ? optionToIndex.get(filterValue)
+    : "";
   return e(
     "select",
     {

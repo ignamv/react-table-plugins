@@ -16,8 +16,8 @@ module.exports.useWheelPaging = function (hooks) {
           previousPage();
           ev.preventDefault();
         }
-      }
-      ref.current.addEventListener('wheel', onWheel);
+      };
+      ref.current.addEventListener("wheel", onWheel);
       return function cleanUp() {
         ref.current.removeEventListener(onWheel);
       };
