@@ -32,5 +32,5 @@ even if the last page is half-full.
 For use with the `useFilter` plugin.
 Renders a `<Select>` with all values in the column,
 similar to the `SelectColumnFilter` component in the `useFilter` example.
-However, the values are sorted, and it filters numbers correctly 
-(e.g. selecting `1` will not show rows like `21`).
+However, the values are sorted, it can be styled when active, 
+and calls `setFilter` with the original value (not converting to string).
