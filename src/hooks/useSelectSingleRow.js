@@ -27,11 +27,13 @@ module.exports.useSelectSingleRow = function (hooks) {
       setSelectedRowIndex,
       state: { selectedRowIndex },
     } = instance;
-    const onClick = () => {
-      setSelectedRowIndex(row.index);
+    const onMouse = (ev) => {
+      if (ev.buttons & 1 || ev.type === 'click') {
+        setSelectedRowIndex(row.index);
+      }
     };
     const className = row.index == selectedRowIndex ? "selected" : "";
-    return { onClick, className, ...props };
+    return { onClick: onMouse, onMouseMove: onMouse, className, ...props };
   }
 
   function useInstance(instance) {

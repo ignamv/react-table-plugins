@@ -70,6 +70,14 @@ test("useSelectSingleRow", () => {
       }
     });
   }
+  function sendmouse(rownumber, name, props={}) {
+    const row = tbody.getElementsByTagName('tr')[rownumber];
+    act(() => {
+      row.dispatchEvent(
+        new MouseEvent(name, { ...props, bubbles: true })
+      );
+    });
+  }
   function selectedRowPosition(container) {
     const [...trs] = container.getElementsByTagName("tr");
     const selected = trs.map((tr) => tr.classList.contains("selected"));
@@ -101,6 +109,15 @@ test("useSelectSingleRow", () => {
   assertSelected(testData.length - 1, testData.length - 1);
   // Select first row
   sendkey("Home");
+  assertSelected(0, 0);
+  // Click on second row
+  sendmouse(1, "click");
+  assertSelected(1, 1);
+  // Just moving doesn't select a row
+  sendmouse(0, "mousemove", { buttons: 0});
+  assertSelected(1, 1);
+  // Moving while holding the left button does
+  sendmouse(0, "mousemove", { buttons: 1});
   assertSelected(0, 0);
   // Go down one row
   sendkey("ArrowDown");
