@@ -1,5 +1,5 @@
 {
-  "name": "react-table-plugins",
+  "name": "@ignamv/react-table-plugins",
   "version": "0.0.1",
   "description": "Plugins for common tasks with react-table",
   "main": "dist/react-table-plugins.js",
@@ -20,7 +20,13 @@
     "react",
     "table",
     "react-table",
-    "plugin"
+    "plugin",
+    "useSelectSingleRow",
+    "useWheelPaging",
+    "useFillerRows",
+    "selection",
+    "select",
+    "wheel"
   ],
   "author": "Ignacio Martinez Vazquez <ignamv@gmail.com> (https://github.com/ignamv)",
   "license": "ISC",
