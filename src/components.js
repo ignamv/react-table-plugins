@@ -89,11 +89,12 @@ module.exports.SelectColumnFilter = function ({
   }, [id, preFilteredRows]);
 
   // Render a multi-select box
+  const value = optionToIndex.has(filterValue) ? optionToIndex.get(filterValue) : '';
   return e(
     "select",
     {
       className: filterValue !== undefined ? "active" : "",
-      value: optionToIndex.get(filterValue) || "",
+      value,
       onChange: (e) => {
         setFilter(sortedOptions[parseInt(e.target.value)] || undefined);
       },

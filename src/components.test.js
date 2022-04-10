@@ -97,7 +97,8 @@ test("selectcolumnfilter", () => {
   }));
   const id = "a";
   function SelectColumnFilterHarness({ onSetFilter }) {
-    const [filterValue, setFilter] = useState();
+    // Initialize with value 0 to check that it's displayed correctly
+    const [filterValue, setFilter] = useState(2);
     return e(SelectColumnFilter, {
       column: {
         filterValue,
@@ -114,6 +115,7 @@ test("selectcolumnfilter", () => {
     render(e(SelectColumnFilterHarness, { onSetFilter }), container);
   });
   const [select] = container.childNodes;
+  expect(select.value).toBe('0');
   const [firstoption, ...options] = select.childNodes;
   expect(firstoption.getAttribute("value")).toBe("");
   expect(firstoption.textContent).toBe("All");
