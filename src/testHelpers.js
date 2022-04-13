@@ -27,13 +27,10 @@ module.exports.ReactTableTestHarness = function (props) {
   const [kwargs, ...args] = tableArgs;
   const { rows, columns, ...otherKwargs } = kwargs;
 
-  const memoizedRows = useMemo(() => rows);
-  const memoizedColumns = useMemo(() => columns);
-
   const instance = useTable(
     {
-      data: memoizedRows,
-      columns: memoizedColumns,
+      data: rows,
+      columns,
       ...otherKwargs,
     },
     ...args
